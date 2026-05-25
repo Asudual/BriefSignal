@@ -1,0 +1,73 @@
+# SignalFlow — 项目根目录 .gitignore
+
+# =========== 环境与密钥 ===========
+.env
+.env.local
+.env.production
+
+# =========== 日志 ===========
+news/logs/
+news/raw/
+
+# =========== 历史日报/早报/晚报 ===========
+news/*日报*.md
+news/*早报*.md
+news/*晚报*.md
+news/*简报*.md
+
+# =========== 运行时文件 ===========
+news/tmp/
+*.tmp
+*.swp
+*.swo
+
+# =========== 系统文件 ===========
+.DS_Store
+Thumbs.db
+*.log
+*.pid
+
+# =========== OpenClaw / Agent 配置（本地私有）===========
+# 以下的文件属于 SignalFlow 运行环境的自身配置，非项目源代码
+# 若要公开，请显式取消注释后手动添加
+# SOUL.md
+# USER.md
+# AGENTS.md
+# TOOLS.md
+# HEARTBEAT.md
+# IDENTITY.md
+.clawhub/
+.openclaw/
+
+# =========== 第三方技能（各有所属，不进仓库）===========
+skills/agent-browser-clawdbot/
+skills/cn-web-search/
+skills/find-skills/
+skills/github/
+skills/memory-hygiene/
+skills/openclaw-tavily-search/
+skills/skillhub-preference/
+skills/tencentcloud-lighthouse-skill/
+skills/tencent-cos-skill/
+skills/tencent-docs/
+skills/tencent-meeting-skill/
+skills/web-tools-guide/
+skills/zhihu-global-search/
+skills/zhihu-hot-list/
+skills/zhihu-search/
+skills/.skills_store_lock.json
+
+# 自定义 skill（保留，如需排除可取消注释）
+# skills/article-rating/
+
+# =========== 事件追踪（含历史状态）===========
+news/event_tracker.json
+news/heartbeat-state.json
+
+# =========== 编辑器 ===========
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
