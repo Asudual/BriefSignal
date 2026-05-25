@@ -22,11 +22,16 @@
 
 | 源 | 权重 | 类型 | 说明 |
 |----|------|------|------|
-| iThome | P0 | RSS | 台湾繁体 IT 媒体，AI 覆盖全 |
+| iThome | P0 | RSS | 台湾繁体 IT 媒体，AI 覆盖全面 |
 | VentureBeat AI | P0 | RSS | 英文 AI 深度报道 |
+| 橘鸦 | P0 | RSS/Web | AI 精选博客聚合 |
+| BestBlogs | P1 | RSS | 中文 AI 独立博客精选 |
 | InfoQ 中国 | P1 | RSS | 技术社区新闻 |
 | 36氪 | P1 | RSS | 创业/投融资 |
+| Qwen Blog | P1 | RSS | 通义千问官方技术博客 |
 | 雷锋网 | P2 | RSS | AI 科技媒体 |
+
+> 实际运行的信源配置通过 `sources.json` 管理，公开仓库仅展示脱敏架构。
 
 ### 第 2 层：知乎开放平台
 **实时全网 / 覆盖 RSS 盲区**

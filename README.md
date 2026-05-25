@@ -12,9 +12,10 @@ SignalFlow 是一个每日 08:00 自动运行的信息筛选与简报生成系�
 ## 架构概览
 
 ```
-┌─ RSS 固定源 (P0/P1/P2) ──┐
-│  iThome / VentureBeat     │
-│  InfoQ / 36氪 / 雷锋网    │
+┌─ RSS 固定源 (P0/P1/P2) ─────┐
+│  iThome / VentureBeat / 橘鸦 │
+│  BestBlogs / InfoQ / 36氪  │
+│  Qwen Blog / 雷锋网         │
 └─────────┬─────────────────┘
           ▼
 ┌─ 知乎开放平台 ────────────┐
