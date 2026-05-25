@@ -46,7 +46,7 @@ if ! command -v openclaw &>/dev/null; then
     exit 1
 fi
 
-QQ_TARGET="EXAMPLE_DELIVERY_TARGET"
+QQ_TARGET="${DELIVERY_TARGET:?Please set DELIVERY_TARGET}"
 
 log INFO "调用 openclaw agent 生成 ${REPORT_TYPE}..."
 # 确保不传thinking参数——让模型用默认值，避免v4-pro不支持thinking的报错

@@ -24,7 +24,7 @@ mkdir -p "$LOGDIR"
 
 log INFO "========== 知乎荐读 触发 =========="
 
-QQ_TARGET="EXAMPLE_DELIVERY_TARGET"
+QQ_TARGET="${DELIVERY_TARGET:?Please set DELIVERY_TARGET}"
 
 TASK_MSG="请执行知乎文章推荐任务：
 

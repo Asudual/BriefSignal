@@ -8,7 +8,7 @@ TODAY=$(date +%Y-%m-%d)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 WORKSPACE="$(cd "$(dirname "$0")/.." && pwd)"
 LOGDIR="$WORKSPACE/logs"
-TARGET="qqbot:c2c:EXAMPLE_DELIVERY_TARGET"
+TARGET="${DELIVERY_TARGET:?Please set DELIVERY_TARGET}"
 
 REPORT_FILE="${1:-}"
 
