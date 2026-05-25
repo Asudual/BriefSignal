@@ -64,8 +64,8 @@ bash news/scripts/generate.sh daily
 bash news/scripts/zhihu-recommend.sh
 
 # 设置 crontab（自行添加到系统 crontab）
-0 8 * * * <project_dir>/news/scripts/generate.sh daily >> <project_dir>/news/logs/cron_$(date +\%Y-\%m-\%d).log 2>&1
-30 12 * * * <project_dir>/news/scripts/zhihu-recommend.sh >> <project_dir>/news/logs/cron_zhihu_$(date +\%Y-\%m-\%d).log 2>&1
+0 8 * * * cd /path/to/signalflow && bash news/scripts/generate.sh daily >> news/logs/cron_$(date +\%Y-\%m-\%d).log 2>&1
+30 12 * * * cd /path/to/signalflow && bash news/scripts/zhihu-recommend.sh >> news/logs/cron_zhihu_$(date +\%Y-\%m-\%d).log 2>&1
 ```
 
 ## 文件说明
@@ -82,11 +82,48 @@ news/
 │   └── zhihu-quality-scorer.py   # 质量评分
 ├── GENERATE_PROMPT.md    # 日报生成模板（模型指令）
 ├── sources.example.json  # 信息源配置示例（脱敏）
-├── sources.json          # 真实信息源配置（不入仓库，从 .env 管理）
+
+> 真实运行时可在本地复制 `news/sources.example.json` 为 `news/sources.json`，并自行配置；`sources.json` 不进入公开仓库。
 
 skills/
 └── article-rating/       # 四维评分 skill
     └── SKILL.md
+
+## 当前能力 (v0.3.0)
+
+### CLI 本地检索
+
+```bash
+python3 news/scripts/search_local.py --query MCP
+python3 news/scripts/search_local.py --source "InfoQ 中国" --min-score 60
+python3 news/scripts/search_local.py --list-sources
+```
+
+### FastAPI 检索服务
+
+```bash
+pip install -r app/requirements.txt
+uvicorn app.main:app --reload --port 8080
+```
+
+| 端点 | 说明 |
+|------|------|
+| `GET /health` | 服务健康检查 |
+| `GET /sources` | 列出可用信源 |
+| `GET /search?query=MCP` | 检索文章（支持 query/source/min_score/limit） |
+
+### 测试与安全
+
+```bash
+# 运行测试
+pip install -r requirements-dev.txt
+pytest tests/
+
+# 安全扫描
+bash scripts/security_scan.sh
+```
+
+详见 `docs/api.md`。
 ```
 
 ## 技术栈
