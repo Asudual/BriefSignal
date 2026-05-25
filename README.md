@@ -64,7 +64,7 @@ BriefSignal 是面向 AI 技术资讯的自动化筛选、评分与检索系统�
 
 - Bash 5+
 - Python 3.10+
-- 可选：如需运行知乎相关采集模块，需自行配置[知乎开放平台]（https://developer.zhihu.com）凭证
+- 可选：如需运行知乎相关采集模块，需自行配置知乎开放平台凭证
 
 ### 安装
 
@@ -91,7 +91,7 @@ bash news/scripts/zhihu-recommend.sh
 
 ## 文件说明
 
-```
+```text
 news/
 ├── scripts/              # 核心脚本
 │   ├── generate.sh       # 日报生成（主入口）
@@ -103,9 +103,11 @@ news/
 │   └── zhihu-quality-scorer.py   # 质量评分
 ├── GENERATE_PROMPT.md    # 日报生成模板（模型指令）
 ├── sources.example.json  # 信息源配置示例（脱敏）
+```
 
 > 真实运行时可在本地复制 `news/sources.example.json` 为 `news/sources.json`，并自行配置；`sources.json` 不进入公开仓库。
 
+```text
 skills/
 └── article-rating/       # 四维评分 skill
     └── SKILL.md
