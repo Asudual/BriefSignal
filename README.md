@@ -48,7 +48,7 @@ SignalFlow 是一个每日 08:00 自动运行的信息筛选与简报生成系�
 ### 安装
 
 ```bash
-git clone https://github.com/<your>/signalflow.git
+git clone https://github.com/Asudual/signalflow.git
 cd signalflow
 cp .env.example .env
 # 编辑 .env 填入 ZHIHU_ACCESS_SECRET
@@ -81,7 +81,8 @@ news/
 │   ├── heartbeat-zhihu-check.sh  # 心跳巡检
 │   └── zhihu-quality-scorer.py   # 质量评分
 ├── GENERATE_PROMPT.md    # 日报生成模板（模型指令）
-└── sources.json          # 信息源配置（请按 .env.example 设置）
+├── sources.example.json  # 信息源配置示例（脱敏）
+├── sources.json          # 真实信息源配置（不入仓库，从 .env 管理）
 
 skills/
 └── article-rating/       # 四维评分 skill

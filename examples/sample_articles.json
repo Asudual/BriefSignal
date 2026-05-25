@@ -15,11 +15,11 @@
     "summary": "MCP 协议发布 v2.0 版本，新增动态工具发现能力，Agent 可在运行时自动发现并注册新工具，无需重启服务。",
     "content_length": 2800,
     "quality_score": {
-      "depth": 4,
-      "originality": 4,
-      "practicality": 5,
-      "title_quality": 4,
-      "total": 86.0,
+      "depth": 80,
+      "originality": 75,
+      "practicality": 95,
+      "title_quality": 80,
+      "total": 82.3,
       "grade": "A"
     },
     "notes": "技术突破类"
@@ -40,11 +40,11 @@
     "summary": "本文综述了 KV Cache 量化的主流方法，从 INT8 到 FP4 的实验对比显示，FP4 量化在保持 97% 精度的同时将显存占用降低 75%。",
     "content_length": 4500,
     "quality_score": {
-      "depth": 5,
-      "originality": 3,
-      "practicality": 3,
-      "title_quality": 4,
-      "total": 80.0,
+      "depth": 90,
+      "originality": 60,
+      "practicality": 65,
+      "title_quality": 80,
+      "total": 75.3,
       "grade": "A"
     },
     "notes": ""
@@ -65,12 +65,12 @@
     "summary": "从开发效率、工具集成、多 Agent 协作、生产部署四个维度对比了 LangChain、CrewAI 和 AutoGen 三个主流框架。",
     "content_length": 3200,
     "quality_score": {
-      "depth": 4,
-      "originality": 3,
-      "practicality": 4,
-      "title_quality": 4,
-      "total": 75.0,
-      "grade": "A"
+      "depth": 75,
+      "originality": 65,
+      "practicality": 80,
+      "title_quality": 80,
+      "total": 74.5,
+      "grade": "B"
     },
     "notes": ""
   },
@@ -89,12 +89,12 @@
     "summary": "一家专注于 AI 推理芯片的初创公司宣布完成 1.2 亿美元 B 轮融资，投资方包括头部风投和产业基金，估值达到 8 亿美元。",
     "content_length": 1500,
     "quality_score": {
-      "depth": 3,
-      "originality": 3,
-      "practicality": 2,
-      "title_quality": 4,
-      "total": 60.0,
-      "grade": "B"
+      "depth": 55,
+      "originality": 60,
+      "practicality": 40,
+      "title_quality": 80,
+      "total": 57.3,
+      "grade": "C"
     },
     "notes": "投融资类"
   },
@@ -114,11 +114,11 @@
     "summary": "Qwen3 技术报告公开，采用混合专家架构（MoE），支持 128K 上下文窗口，在多项中文和英文基准测试中达到开源模型 SOTA。",
     "content_length": 5200,
     "quality_score": {
-      "depth": 5,
-      "originality": 4,
-      "practicality": 3,
-      "title_quality": 5,
-      "total": 87.5,
+      "depth": 95,
+      "originality": 80,
+      "practicality": 60,
+      "title_quality": 90,
+      "total": 82.8,
       "grade": "A"
     },
     "notes": "技术报告类"
@@ -139,11 +139,11 @@
     "summary": "某安全实验室发布年度报告称 2026 年 Q1 针对 LLM 应用的提示注入攻击数量同比增长 300%，建议企业部署输入输出护栏。",
     "content_length": 2300,
     "quality_score": {
-      "depth": 3,
-      "originality": 3,
-      "practicality": 3,
-      "title_quality": 3,
-      "total": 60.0,
+      "depth": 60,
+      "originality": 65,
+      "practicality": 55,
+      "title_quality": 65,
+      "total": 61.0,
       "grade": "B"
     },
     "notes": ""
@@ -164,11 +164,11 @@
     "summary": "介绍了 Rust 编写 CLI 工具时的项目结构、错误处理、命令行解析和测试策略。",
     "content_length": 3800,
     "quality_score": {
-      "depth": 3,
-      "originality": 2,
-      "practicality": 4,
-      "title_quality": 3,
-      "total": 58.0,
+      "depth": 55,
+      "originality": 40,
+      "practicality": 75,
+      "title_quality": 55,
+      "total": 55.8,
       "grade": "C"
     },
     "notes": "非 AI 话题，低分示例"

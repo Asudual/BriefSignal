@@ -50,7 +50,7 @@
 ### 质量评分（四维体系）
 
 ```
-score = depth × 35 + originality × 25 + practicality × 25 + title_quality × 15
+total = depth × 0.35 + originality × 0.25 + practicality × 0.25 + title_quality × 0.15
 ```
 
 - `score ≥ 75` → A 级 ✅ 优先推送

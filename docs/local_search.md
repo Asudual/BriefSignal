@@ -75,12 +75,12 @@ python3 news/scripts/search_local.py --min-score 75
   "summary": "摘要内容",
   "content_length": 3200,
   "quality_score": {
-    "depth": 4,
-    "originality": 3,
-    "practicality": 4,
-    "title_quality": 4,
-    "total": 75.0,
-    "grade": "A"
+    "depth": 80,
+    "originality": 60,
+    "practicality": 75,
+    "title_quality": 75,
+    "total": 73.0,
+    "grade": "B"
   },
   "notes": ""
 }

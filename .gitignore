@@ -30,12 +30,12 @@ Thumbs.db
 # =========== OpenClaw / Agent 配置（本地私有）===========
 # 以下的文件属于 SignalFlow 运行环境的自身配置，非项目源代码
 # 若要公开，请显式取消注释后手动添加
-# SOUL.md
-# USER.md
-# AGENTS.md
-# TOOLS.md
-# HEARTBEAT.md
-# IDENTITY.md
+SOUL.md
+USER.md
+AGENTS.md
+TOOLS.md
+HEARTBEAT.md
+IDENTITY.md
 .clawhub/
 .openclaw/
 

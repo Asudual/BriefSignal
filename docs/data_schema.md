@@ -21,12 +21,12 @@
   "summary": "文章摘要（长度 ≤ 500 字）",
   "content_length": 3200,
   "quality_score": {
-    "depth": 4,
-    "originality": 3,
-    "practicality": 4,
-    "title_quality": 4,
-    "total": 75.0,
-    "grade": "A"
+    "depth": 80,
+    "originality": 60,
+    "practicality": 75,
+    "title_quality": 75,
+    "total": 73.0,
+    "grade": "B"
   },
   "notes": "可选：标注、提醒"
 }
@@ -71,12 +71,12 @@
 
 ```json
 {
-  "depth": 4,
-  "originality": 3,
-  "practicality": 4,
-  "title_quality": 4,
-  "total": 75.0,
-  "grade": "A"
+  "depth": 80,
+  "originality": 60,
+  "practicality": 75,
+  "title_quality": 75,
+  "total": 73.0,
+  "grade": "B"
 }
 ```
 
@@ -84,11 +84,11 @@
 
 | 字段 | 类型 | 范围 | 说明 |
 |------|------|------|------|
-| `depth` | integer | 1-5 | 内容深度 |
-| `originality` | integer | 1-5 | 原创性 |
-| `practicality` | integer | 1-5 | 实操价值 |
-| `title_quality` | integer | 1-5 | 标题质量 |
-| `total` | float | 0-100 | 加权总分 |
+| `depth` | integer | 0-100 | 内容深度 |
+| `originality` | integer | 0-100 | 原创性 |
+| `practicality` | integer | 0-100 | 实操价值 |
+| `title_quality` | integer | 0-100 | 标题质量 |
+| `total` | float | 0-100 | 加权总分 = depth×0.35 + originality×0.25 + practicality×0.25 + title_quality×0.15 |
 | `grade` | string | A/B/C | A ≥ 75, B ≥ 60, C < 60 |
 
 ### 分级

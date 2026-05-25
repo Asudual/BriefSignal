@@ -37,23 +37,18 @@ def load_articles(path: str) -> list:
         sys.exit(1)
 
 
-def get_total(scores: dict | int | float) -> float:
-    """
-    提取 quality_score.total 值。
-    支持两种格式：
-      - 新格式: {"depth": 4, "total": 75.0, "grade": "A"}
-      - 旧格式兼容: 0.85（直接数值，返回本身）
-    """
-    if isinstance(scores, dict):
-        return float(scores.get("total", 0))
-    return float(scores)
+def get_total(scores: dict) -> float:
+    """从 quality_score 对象提取 total"""
+    if not isinstance(scores, dict):
+        return 0.0
+    return float(scores.get("total", 0))
 
 
-def get_grade(scores: dict | int | float) -> str:
-    """提取 grade"""
-    if isinstance(scores, dict):
-        return str(scores.get("grade", "?"))
-    return "?"
+def get_grade(scores: dict) -> str:
+    """从 quality_score 对象提取 grade"""
+    if not isinstance(scores, dict):
+        return "?"
+    return str(scores.get("grade", "?"))
 
 
 def match_keywords(text: str, keywords: list[str]) -> bool:

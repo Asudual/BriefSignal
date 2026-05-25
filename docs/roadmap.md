@@ -16,7 +16,15 @@
 
 ## 近期计划
 
-### v0.2 — 安全与开发体验
+### v0.2 — 结构化数据与本地检索
+- [x] sources.example.json（脱敏信源示例）
+- [x] data_schema.md（统一 JSON schema）
+- [x] scoring.md（四维评分判据文档）
+- [x] sample_articles.json（脱敏模拟示例数据）
+- [x] search_local.py（关键词/信源/评分过滤检索）
+- [x] 评分体系统一为 0-100 四维评分
+
+### v0.3 — 安全与开发体验
 - [ ] 完善 .env 配置体系
 - [ ] 添加单元测试与集成测试
 - [ ] 脚本参数校验与帮助信息
