@@ -1,11 +1,39 @@
 # SignalFlow 🏛️
 
-> automated AI information filtering and briefing pipeline。
+> automated AI information filtering and briefing pipeline
 
-SignalFlow 是一个每日 08:00 自动运行的信息筛选与简报生成系统。它从多个信源抓取内容，经质量评分筛选后生成结构化 AI 日报，推送到 QQ。12:30 独立推送知乎荐读文章。
+## 中文简介
 
-**当前定位**：automated AI information filtering and briefing pipeline。  
-**后续计划**：升级为 AI Search / RAG / Agent 系统。
+SignalFlow 是面向 AI 技术资讯的自动化筛选、评分与检索系统原型。
+
+**当前能力：**
+- 自动化 pipeline：多信源采集、质量评分、日报生成、定时推送
+- 结构化 schema：标准化文章、信源、评分 JSON 结构
+- 四维质量评分：深度 / 原创性 / 实操性 / 标题质量，0-100 分 + A/B/C 等级
+- 本地检索：CLI 关键词搜索 + FastAPI 服务（/health /sources /search）
+- 测试与安全：pytest 测试套件 + 自动化安全扫描脚本
+
+**后续计划：** 升级为 AI Search / RAG / Agent 系统。
+
+---
+
+## Current Status (v0.3.0)
+
+- ✅ automated AI information filtering and briefing pipeline
+- ✅ structured article schema (docs/data_schema.md)
+
+---
+
+## Current Status (v0.3.0)
+
+- ✅ automated AI information filtering and briefing pipeline
+- ✅ structured article schema (docs/data_schema.md)
+- ✅ four-dimensional content quality scoring (depth/originality/practicality/title_quality)
+- ✅ local keyword search baseline (search_local.py)
+- ✅ FastAPI service: /health /sources /search
+- ✅ pytest test suite (17 tests)
+- ✅ security scan script (scripts/security_scan.sh)
+- 🔜 AI Search / RAG / Agent (see roadmap)
 
 ---
 
