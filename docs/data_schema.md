@@ -20,8 +20,14 @@
   "tags": ["AI", "大模型", "推理优化"],
   "summary": "文章摘要（长度 ≤ 500 字）",
   "content_length": 3200,
-  "quality_score": 0.82,
-  "grade": "fire",
+  "quality_score": {
+    "depth": 4,
+    "originality": 3,
+    "practicality": 4,
+    "title_quality": 4,
+    "total": 75.0,
+    "grade": "A"
+  },
   "notes": "可选：标注、提醒"
 }
 ```
@@ -40,8 +46,7 @@
 | `tags` | string[] | 否 | 分类标签 |
 | `summary` | string | ✅ | 文章摘要，≤ 500 字 |
 | `content_length` | integer | 否 | 正文长度（字符数） |
-| `quality_score` | float | ✅ | 质量评分 0.0 ~ 1.0（见评分公式） |
-| `grade` | string | ✅ | 分级：`fire` / `important` / `brief` / `discard` |
+| `quality_score` | object | ✅ | 四维评分（见下方 QualityScore） |
 | `notes` | string | 否 | 标注或提醒 |
 
 ## Source（信源）
@@ -62,42 +67,43 @@
 | `priority` | string | `P0` / `P1` / `P2` |
 | `type` | string | `rss` / `webpage` / `zhihu_open_api` / `zhihu_hot_list` |
 
-## 质量评分公式
+## QualityScore（四维评分）
 
+```json
+{
+  "depth": 4,
+  "originality": 3,
+  "practicality": 4,
+  "title_quality": 4,
+  "total": 75.0,
+  "grade": "A"
+}
 ```
-score = source_weight × 0.5 + timeliness × 0.3 + info_density × 0.2
-```
 
-### 参数
+### 字段说明
 
-| 参数 | 说明 | 取值 |
-|------|------|------|
-| `source_weight` | 信源权重 | P0: 0.95, P1: 0.75, P2: 0.60 |
-| `timeliness` | 时效性 | 当天: 1.0, 前一天: 0.7, 更早: 0.3 |
-| `info_density` | 信息密度 | >500 字: 1.0, 200-500: 0.7, <200: 0.4 |
+| 字段 | 类型 | 范围 | 说明 |
+|------|------|------|------|
+| `depth` | integer | 1-5 | 内容深度 |
+| `originality` | integer | 1-5 | 原创性 |
+| `practicality` | integer | 1-5 | 实操价值 |
+| `title_quality` | integer | 1-5 | 标题质量 |
+| `total` | float | 0-100 | 加权总分 |
+| `grade` | string | A/B/C | A ≥ 75, B ≥ 60, C < 60 |
 
 ### 分级
 
-| grade | score 范围 | 标签 |
+| grade | total 范围 | 策略 |
 |-------|-----------|------|
-| `fire` | ≥ 0.85 | 🔥 重大新闻 |
-| `important` | ≥ 0.70 | 🔔 重要新闻 |
-| `brief` | ≥ 0.50 | 📌 简略新闻 |
-| `discard` | < 0.50 | 丢弃 |
+| **A** | ≥ 75 | 优先推送，进入日报/荐读 |
+| **B** | 60 - 74 | 备选，可能进入候选池 |
+| **C** | < 60 | 低优先级，自动过滤 |
 
-## 四维评分（知乎文章）
+> `quality_score` 指的是 **Article Quality Score**（第二层评分），不是 GENERATE_PROMPT.md 中的 runtime filtering score。
+> 四维评分的详细判据见 `docs/scoring.md`。
+> RSS 源采集的文章也使用此结构，各维度由自动化规则填充。
 
-知乎文章使用独立的四维评分体系，详见 `skills/article-rating/SKILL.md`。
 
-```
-总分 = 深度 × 0.35 + 原创性 × 0.25 + 实操性 × 0.25 + 标题质量 × 0.15
-```
-
-| grade | 范围 | 策略 |
-|-------|------|------|
-| A | ≥ 75 | 优先推送 |
-| B | 60-74 | 备选 |
-| C | < 60 | 不推送 |
 
 ## Report（完整日报）
 
@@ -109,9 +115,9 @@ score = source_weight × 0.5 + timeliness × 0.3 + info_density × 0.2
   "summary": "本日摘要",
   "keywords": ["MCP", "Agent", "推理优化"],
   "sections": {
-    "fire": [Article, ...],
-    "important": [Article, ...],
-    "brief": [Article, ...]
+    "A": [Article, ...],
+    "B": [Article, ...],
+    "C": [Article, ...]
   },
   "sources_summary": {
     "total": 8,

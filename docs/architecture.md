@@ -47,16 +47,15 @@
 
 ## 评分系统
 
-### 质量评分（通用）
+### 质量评分（四维体系）
 
 ```
-score = source_weight × 0.5 + timeliness × 0.3 + info_density × 0.2
+score = depth × 35 + originality × 25 + practicality × 25 + title_quality × 15
 ```
 
-- `score ≥ 0.85` → 🔥 重大新闻
-- `score ≥ 0.70` → 🔔 重要新闻
-- `score ≥ 0.50` → 📌 简略新闻
-- `score < 0.50` → 丢弃
+- `score ≥ 75` → A 级 ✅ 优先推送
+- `score ≥ 60` → B 级 🔔 可参考
+- `score < 60` → C 级 ❌ 过滤
 
 ### 四维评分（知乎文章，`skills/article-rating/`）
 
