@@ -57,6 +57,16 @@ skills/zhihu-hot-list/
 skills/zhihu-search/
 skills/.skills_store_lock.json
 
+# =========== FastAPI / Python 运行产物 ===========
+app/__pycache__/
+app/*.pyc
+tests/__pycache__/
+tests/*.pyc
+.pytest_cache/
+__pycache__/
+*.pyc
+*.egg-info/
+
 # 自定义 skill（保留，如需排除可取消注释）
 # skills/article-rating/
 

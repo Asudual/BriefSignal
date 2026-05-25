@@ -1,0 +1,176 @@
+[
+  {
+    "id": "a1b2c3d4e5f60718",
+    "title": "MCP 协议迎来 v2.0 更新，支持动态工具发现",
+    "source": {
+      "name": "橘鸦AI早报",
+      "priority": "P0",
+      "type": "rss"
+    },
+    "url": "https://example.com/articles/mcp-v2-dynamic-tools",
+    "published_at": "2026-05-25T07:30:00+08:00",
+    "collected_at": "2026-05-25T07:35:00+08:00",
+    "author": "示例作者",
+    "tags": ["MCP", "Agent", "协议"],
+    "summary": "MCP 协议发布 v2.0 版本，新增动态工具发现能力，Agent 可在运行时自动发现并注册新工具，无需重启服务。",
+    "content_length": 2800,
+    "quality_score": {
+      "depth": 80,
+      "originality": 75,
+      "practicality": 95,
+      "title_quality": 80,
+      "total": 82.3,
+      "grade": "A"
+    },
+    "notes": "技术突破类"
+  },
+  {
+    "id": "b2c3d4e5f6071829",
+    "title": "KV Cache 量化推理综述：从 INT8 到 FP4 的演进",
+    "source": {
+      "name": "iThome",
+      "priority": "P0",
+      "type": "rss"
+    },
+    "url": "https://example.com/articles/kv-cache-quantization-survey",
+    "published_at": "2026-05-24T14:00:00+08:00",
+    "collected_at": "2026-05-24T14:10:00+08:00",
+    "author": "示例作者",
+    "tags": ["大模型", "推理优化", "量化"],
+    "summary": "本文综述了 KV Cache 量化的主流方法，从 INT8 到 FP4 的实验对比显示，FP4 量化在保持 97% 精度的同时将显存占用降低 75%。",
+    "content_length": 4500,
+    "quality_score": {
+      "depth": 90,
+      "originality": 60,
+      "practicality": 65,
+      "title_quality": 80,
+      "total": 75.3,
+      "grade": "A"
+    },
+    "notes": ""
+  },
+  {
+    "id": "c3d4e5f60718293a",
+    "title": "开源 Agent 框架对比：LangChain vs CrewAI vs AutoGen",
+    "source": {
+      "name": "InfoQ 中国",
+      "priority": "P1",
+      "type": "rss"
+    },
+    "url": "https://example.com/articles/agent-framework-comparison",
+    "published_at": "2026-05-25T09:00:00+08:00",
+    "collected_at": "2026-05-25T09:05:00+08:00",
+    "author": "示例作者",
+    "tags": ["Agent", "框架对比", "开源"],
+    "summary": "从开发效率、工具集成、多 Agent 协作、生产部署四个维度对比了 LangChain、CrewAI 和 AutoGen 三个主流框架。",
+    "content_length": 3200,
+    "quality_score": {
+      "depth": 75,
+      "originality": 65,
+      "practicality": 80,
+      "title_quality": 80,
+      "total": 74.5,
+      "grade": "B"
+    },
+    "notes": ""
+  },
+  {
+    "id": "d4e5f60718293a4b",
+    "title": "AI 芯片初创公司完成 1.2 亿美元 B 轮融资",
+    "source": {
+      "name": "36氪",
+      "priority": "P1",
+      "type": "rss"
+    },
+    "url": "https://example.com/articles/ai-chip-120m-series-b",
+    "published_at": "2026-05-24T10:30:00+08:00",
+    "collected_at": "2026-05-24T10:35:00+08:00",
+    "tags": ["投融资", "AI 芯片", "算力"],
+    "summary": "一家专注于 AI 推理芯片的初创公司宣布完成 1.2 亿美元 B 轮融资，投资方包括头部风投和产业基金，估值达到 8 亿美元。",
+    "content_length": 1500,
+    "quality_score": {
+      "depth": 55,
+      "originality": 60,
+      "practicality": 40,
+      "title_quality": 80,
+      "total": 57.3,
+      "grade": "C"
+    },
+    "notes": "投融资类"
+  },
+  {
+    "id": "e5f60718293a4b5c",
+    "title": "Qwen3 技术报告发布：MoE 架构与长上下文能力",
+    "source": {
+      "name": "Qwen Blog",
+      "priority": "P1",
+      "type": "webpage"
+    },
+    "url": "https://example.com/articles/qwen3-tech-report",
+    "published_at": "2026-05-23T16:00:00+08:00",
+    "collected_at": "2026-05-23T16:10:00+08:00",
+    "author": "示例团队",
+    "tags": ["Qwen", "模型发布", "MoE"],
+    "summary": "Qwen3 技术报告公开，采用混合专家架构（MoE），支持 128K 上下文窗口，在多项中文和英文基准测试中达到开源模型 SOTA。",
+    "content_length": 5200,
+    "quality_score": {
+      "depth": 95,
+      "originality": 80,
+      "practicality": 60,
+      "title_quality": 90,
+      "total": 82.8,
+      "grade": "A"
+    },
+    "notes": "技术报告类"
+  },
+  {
+    "id": "f60718293a4b5c6d",
+    "title": "提示注入攻击年度报告：2026 Q1 攻击量增长 300%",
+    "source": {
+      "name": "雷锋网",
+      "priority": "P2",
+      "type": "rss"
+    },
+    "url": "https://example.com/articles/prompt-injection-2026-q1",
+    "published_at": "2026-05-25T06:00:00+08:00",
+    "collected_at": "2026-05-25T06:05:00+08:00",
+    "author": "示例作者",
+    "tags": ["AI 安全", "提示注入", "报告"],
+    "summary": "某安全实验室发布年度报告称 2026 年 Q1 针对 LLM 应用的提示注入攻击数量同比增长 300%，建议企业部署输入输出护栏。",
+    "content_length": 2300,
+    "quality_score": {
+      "depth": 60,
+      "originality": 65,
+      "practicality": 55,
+      "title_quality": 65,
+      "total": 61.0,
+      "grade": "B"
+    },
+    "notes": ""
+  },
+  {
+    "id": "0718293a4b5c6d7e",
+    "title": "Rust 写 CLI 工具的最佳实践",
+    "source": {
+      "name": "BestBlogs",
+      "priority": "P1",
+      "type": "rss"
+    },
+    "url": "https://example.com/articles/rust-cli-best-practices",
+    "published_at": "2026-05-22T11:00:00+08:00",
+    "collected_at": "2026-05-22T11:05:00+08:00",
+    "author": "示例作者",
+    "tags": ["Rust", "CLI", "编程"],
+    "summary": "介绍了 Rust 编写 CLI 工具时的项目结构、错误处理、命令行解析和测试策略。",
+    "content_length": 3800,
+    "quality_score": {
+      "depth": 55,
+      "originality": 40,
+      "practicality": 75,
+      "title_quality": 55,
+      "total": 55.8,
+      "grade": "C"
+    },
+    "notes": "非 AI 话题，低分示例"
+  }
+]

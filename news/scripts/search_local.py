@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 """
-SignalFlow 本地检索脚本 — v0.2 预研版
+SignalFlow 本地检索脚本 — v0.3 模块化版
 
 从本地 JSON 文件（符合 data_schema.md 的 Article 格式）中
 按关键词、信源、最低评分过滤，输出匹配结果。
 
-用途：
-- 快速检索历史采集文章的标题/摘要/标签
-- 验证 data_schema 和采样数据的结构正确性
-- 作为未来 AI Search / RAG 的前置原型
+支持 CLI 直接调用和作为模块 import。
 
 依赖：仅 Python 3 标准库
 """
@@ -38,17 +35,26 @@ def load_articles(path: str) -> list:
 
 
 def get_total(scores: dict) -> float:
-    """从 quality_score 对象提取 total"""
+    """从 quality_score 对象提取 total（0-100）"""
     if not isinstance(scores, dict):
         return 0.0
     return float(scores.get("total", 0))
 
 
 def get_grade(scores: dict) -> str:
-    """从 quality_score 对象提取 grade"""
+    """从 quality_score 对象提取 grade（A/B/C）"""
     if not isinstance(scores, dict):
         return "?"
     return str(scores.get("grade", "?"))
+
+
+def list_sources(articles: list) -> list[str]:
+    """返回所有可用信源名称列表（排序去重）"""
+    sources = set()
+    for art in articles:
+        name = art.get("source", {}).get("name", "未知")
+        sources.add(name)
+    return sorted(sources)
 
 
 def match_keywords(text: str, keywords: list[str]) -> bool:
@@ -65,14 +71,17 @@ def search(
     query: str | None = None,
     source: str | None = None,
     min_score: float = 0.0,
+    limit: int | None = None,
 ) -> list[dict]:
     """
     搜索主函数。
 
     参数：
-        query:     检索关键词（匹配 title + summary + tags）
-        source:    按信源名称过滤
-        min_score: 最低 quality_score.total 阈值
+        articles:  文章列表
+        query:     检索关键词（空格分隔多词，匹配 title + summary + tags）
+        source:    按信源名称过滤（部分匹配）
+        min_score: 最低 quality_score.total 阈值（0-100）
+        limit:     最多返回条数（None = 不限）
     """
     keywords = query.strip().split() if query else []
 
@@ -104,11 +113,15 @@ def search(
 
     # 按 total 评分降序排列
     results.sort(key=lambda x: get_total(x.get("quality_score", {})), reverse=True)
+
+    if limit is not None:
+        results = results[:limit]
+
     return results
 
 
 def format_results(results: list) -> str:
-    """格式化输出结果"""
+    """格式化输出结果（人类可读）"""
     if not results:
         return "📭 无匹配结果"
 
@@ -166,6 +179,12 @@ def main():
         help="最低 quality_score.total 阈值（0-100，A级≥75, B级≥60）",
     )
     parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="最多返回条数",
+    )
+    parser.add_argument(
         "--list-sources",
         action="store_true",
         help="列出所有可用信源",
@@ -177,12 +196,9 @@ def main():
 
     # --list-sources 模式
     if args.list_sources:
-        sources = set()
-        for art in articles:
-            name = art.get("source", {}).get("name", "未知")
-            sources.add(name)
+        sources = list_sources(articles)
         print("📡 可用信源：")
-        for s in sorted(sources):
+        for s in sources:
             print(f"  - {s}")
         return
 
@@ -197,6 +213,7 @@ def main():
         query=args.query,
         source=args.source,
         min_score=args.min_score,
+        limit=args.limit,
     )
 
     print(format_results(results))
