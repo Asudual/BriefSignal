@@ -1,5 +1,5 @@
 #!/bin/bash
-# SignalFlow 突发新闻监控 — 心跳用
+# BriefSignal 突发新闻监控 — 心跳用
 # 每30分钟检查一次知乎热榜+全球搜索，发现新AI话题对比事件库
 # 用法: bash heartbeat-zhihu-check.sh
 

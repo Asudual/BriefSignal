@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SignalFlow 知乎文章质量评分器 v2
+BriefSignal 知乎文章质量评分器 v2
 改进：
   1. 深度 → 中文原生指标（句长/句数/段落/词汇丰富度/逻辑词密度）
   2. 权威 → E-E-A-T 框架

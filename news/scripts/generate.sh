@@ -1,5 +1,5 @@
 #!/bin/bash
-# SignalFlow News - Cron Wrapper v3
+# BriefSignal News - Cron Wrapper v3
 # 由 crontab 调用，通过 openclaw agent 触发生成
 # 用法: ./generate.sh daily
 
@@ -28,7 +28,7 @@ if [ "$TYPE" = "daily" ]; then
     REPORT_TYPE="日报"
     SAVE_FILE="$WORKSPACE/news/日报_${TODAY}.md"
     PROMPT_FILE="$WORKSPACE/news/GENERATE_PROMPT.md"
-    TASK_MSG="请按照 GENERATE_PROMPT.md 的完整流程，生成今天（${TODAY}）的 SignalFlow AI日报。日报合并了原来的早报和晚报，每天只推一次，内容精选浓缩。严格按照模板执行全部9个步骤。把完整报告保存到 ${SAVE_FILE}，只输出最终摘要到回复。输出格式：
+    TASK_MSG="请按照 GENERATE_PROMPT.md 的完整流程，生成今天（${TODAY}）的 BriefSignal AI日报。日报合并了原来的早报和晚报，每天只推一次，内容精选浓缩。严格按照模板执行全部9个步骤。把完整报告保存到 ${SAVE_FILE}，只输出最终摘要到回复。输出格式：
 【日报摘要】
 条目数: X🔥/Y🔔/Z📌
 关键词: ...
@@ -39,7 +39,7 @@ else
     exit 1
 fi
 
-log INFO "========== SignalFlow ${REPORT_TYPE} 触发 =========="
+log INFO "========== BriefSignal ${REPORT_TYPE} 触发 =========="
 
 if ! command -v openclaw &>/dev/null; then
     log ERROR "openclaw CLI 不可用"
@@ -68,7 +68,7 @@ if [ "$AGENT_EXIT" -ne 0 ]; then
         log ALERT "⚠️ 连续2天失败，触发告警"
         openclaw agent \
             --agent main \
-            --message "⚠️ SignalFlow 执行异常：日报连续2天生成失败（${YESTERDAY} 和 ${TODAY}），请检查日志" \
+            --message "⚠️ BriefSignal 执行异常：日报连续2天生成失败（${YESTERDAY} 和 ${TODAY}），请检查日志" \
             --thinking off \
             --timeout 60 \
             --deliver \
@@ -84,4 +84,4 @@ else
     log WARN "⚠️ ${REPORT_TYPE} 文件 ${SAVE_FILE} 不存在"
 fi
 
-log INFO "========== SignalFlow ${REPORT_TYPE} 完成 =========="
+log INFO "========== BriefSignal ${REPORT_TYPE} 完成 =========="

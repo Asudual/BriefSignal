@@ -1,4 +1,4 @@
-# SignalFlow 系统架构
+# BriefSignal 系统架构
 
 ## 架构概览
 

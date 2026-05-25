@@ -1,4 +1,4 @@
-# SignalFlow — Project Summary
+# BriefSignal — Project Summary
 
 > **自动化 AI 信息筛选与简报生成系统原型**
 
@@ -6,9 +6,9 @@
 
 ## 项目简介 / What It Is
 
-SignalFlow 是一个面向 AI 技术资讯的自动化筛选、评分与检索系统原型。从多源信息流（RSS 源、知乎开放平台）中采集文章，通过结构化质量评估筛选出高质量内容，生成每日简报并推送。
+BriefSignal 是一个面向 AI 技术资讯的自动化筛选、评分与检索系统原型。从多源信息流（RSS 源、知乎开放平台）中采集文章，通过结构化质量评估筛选出高质量内容，生成每日简报并推送。
 
-在 v0.3.0 中，SignalFlow 还提供了本地检索 API（FastAPI），支持在结构化文章数据上做关键词/信源/评分阈值检索，以及 pytest 测试套件和自动化安全扫描脚本。
+在 v0.3.0 中，BriefSignal 还提供了本地检索 API（FastAPI），支持在结构化文章数据上做关键词/信源/评分阈值检索，以及 pytest 测试套件和自动化安全扫描脚本。
 
 ---
 
@@ -44,7 +44,7 @@ SignalFlow 是一个面向 AI 技术资讯的自动化筛选、评分与检索�
 
 ### 1. 双层评分（Two-Layer Scoring）
 
-SignalFlow 将**运行时筛选**（快速自动化规则，决定哪些内容进入候选池）与**文章质量评分**（四维 0-100 评分，随文章一起存储）分开。这让每日生成既有速度优势，历史检索又有精度保证。
+BriefSignal 将**运行时筛选**（快速自动化规则，决定哪些内容进入候选池）与**文章质量评分**（四维 0-100 评分，随文章一起存储）分开。这让每日生成既有速度优势，历史检索又有精度保证。
 
 ### 2. 信源优先级 P0/P1/P2
 
@@ -83,7 +83,7 @@ SignalFlow 将**运行时筛选**（快速自动化规则，决定哪些内容�
 
 ## 适合结合的方向
 
-SignalFlow 的架构设计使其容易与以下方向结合：
+BriefSignal 的架构设计使其容易与以下方向结合：
 
 | 方向 | 结合点 |
 |------|--------|
@@ -97,6 +97,6 @@ SignalFlow 的架构设计使其容易与以下方向结合：
 
 ## Repository
 
-https://github.com/Asudual/signalflow
+https://github.com/Asudual/BriefSignal
 
 MIT License.

@@ -1,5 +1,5 @@
 """
-SignalFlow 本地检索功能测试
+BriefSignal 本地检索功能测试
 
 测试数据使用脱敏 mock 数据（tests/test_data/sample_articles.json）。
 不连接任何外部服务，不读取真实数据。

@@ -1,5 +1,5 @@
 #!/bin/bash
-# SignalFlow 知乎荐读 - 独立推送脚本
+# BriefSignal 知乎荐读 - 独立推送脚本
 # crontab: 30 12 * * * <project_dir>/news/scripts/zhihu-recommend.sh
 
 set -euo pipefail
@@ -38,7 +38,7 @@ TASK_MSG="请执行知乎文章推荐任务：
 
 3. 最多推荐 6 篇，格式如下：
 
-📚 SignalFlow 荐读 · ${TODAY}
+📚 BriefSignal 荐读 · ${TODAY}
 
 🔥 #1 [标题]
 [2-3句摘要]

@@ -1,4 +1,4 @@
-# SignalFlow API v0.3.0
+# BriefSignal API v0.3.0
 
 本地检索服务 API。使用 FastAPI 提供 HTTP 接口。
 

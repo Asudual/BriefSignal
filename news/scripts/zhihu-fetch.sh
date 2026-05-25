@@ -1,5 +1,5 @@
 #!/bin/bash
-# SignalFlow 知乎数据开放平台数据抓取器
+# BriefSignal 知乎数据开放平台数据抓取器
 # 用法: ./zhihu-fetch.sh <type> [query]
 # type: global | zhihu | hot
 

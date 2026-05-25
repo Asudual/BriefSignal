@@ -1,5 +1,5 @@
 {
-  "_comment": "SignalFlow 信息源配置示例 — 脱敏版",
+  "_comment": "BriefSignal 信息源配置示例 — 脱敏版",
   "sources": [
     {
       "name": "橘鸦AI早报",

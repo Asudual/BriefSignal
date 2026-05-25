@@ -1,4 +1,4 @@
-# SignalFlow 数据 Schema
+# BriefSignal 数据 Schema
 
 采集文章的标准化 JSON 结构，用于 RSS 源和知乎平台采集结果。
 

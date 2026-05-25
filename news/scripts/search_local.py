@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SignalFlow 本地检索脚本 — v0.3 模块化版
+BriefSignal 本地检索脚本 — v0.3 模块化版
 
 从本地 JSON 文件（符合 data_schema.md 的 Article 格式）中
 按关键词、信源、最低评分过滤，输出匹配结果。
@@ -146,7 +146,7 @@ def format_results(results: list) -> str:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="SignalFlow 本地检索脚本 — 四维评分体系",
+        description="BriefSignal 本地检索脚本 — 四维评分体系",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
             "示例:\n"

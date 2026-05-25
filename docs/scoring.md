@@ -1,6 +1,6 @@
-# SignalFlow 文章评分机制
+# BriefSignal 文章评分机制
 
-SignalFlow 使用结构化四维内容质量评估，而非简单关键词匹配。对采集到的文章进行逐维打分。
+BriefSignal 使用结构化四维内容质量评估，而非简单关键词匹配。对采集到的文章进行逐维打分。
 
 每个维度 **0-100 分**，加权计算总分（满分 100）。
 
@@ -108,7 +108,7 @@ total = depth × 0.35 + originality × 0.25 + practicality × 0.25 + title_quali
 
 ## Two-Layer Scoring Design
 
-SignalFlow 定义了两层评分，分别用于不同的处理阶段。
+BriefSignal 定义了两层评分，分别用于不同的处理阶段。
 
 ### 第一层：Runtime Filtering Score（运行时筛选）
 

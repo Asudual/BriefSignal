@@ -1,5 +1,5 @@
 #!/bin/bash
-# SignalFlow Security Scan v0.3.0
+# BriefSignal Security Scan v0.3.0
 # 执行安全扫描，检查仓库中是否含有敏感字段。
 # 正常: exit 0 | 发现风险: exit 1
 #
@@ -41,7 +41,7 @@ scan_pattern() {
     fi
 }
 
-echo "=== SignalFlow Security Scan ==="
+echo "=== BriefSignal Security Scan ==="
 echo ""
 
 # 硬编码知乎 Secret

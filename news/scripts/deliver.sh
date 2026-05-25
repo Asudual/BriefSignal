@@ -1,5 +1,5 @@
 #!/bin/bash
-# SignalFlow News - Deliver Module v2
+# BriefSignal News - Deliver Module v2
 # 记录投递状态，检查报告质量，失败时触发告警
 
 set -euo pipefail

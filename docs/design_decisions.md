@@ -1,14 +1,14 @@
-# SignalFlow Design Decisions
+# BriefSignal Design Decisions
 
 关键设计取舍和背后的思考。
 
 ---
 
-## 1. Why SignalFlow
+## 1. Why BriefSignal
 
 **为什么从自动化 AI 资讯筛选开始，而不是直接做 AI Search / RAG / Agent？**
 
-SignalFlow 的起点是一个每天 08:00 自动运行的日报系统。选择这个切入点的原因：
+BriefSignal 的起点是一个每天 08:00 自动运行的日报系统。选择这个切入点的原因：
 
 1. **每天一次的真实反馈循环** — 日报系统每天产生一次输出，你可以每天检查质量，发现问题后第二天就能修正。这比搭建一个复杂的 RAG 系统后才发现方向错了要快得多。
 

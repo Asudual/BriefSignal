@@ -1,10 +1,10 @@
-# SignalFlow 🏛️
+# BriefSignal 🏛️
 
 > automated AI information filtering and briefing pipeline
 
 ## 中文简介
 
-SignalFlow 是面向 AI 技术资讯的自动化筛选、评分与检索系统原型。
+BriefSignal 是面向 AI 技术资讯的自动化筛选、评分与检索系统原型。
 
 **当前能力：**
 - 自动化 pipeline：多信源采集、质量评分、日报生成、定时推送
@@ -64,13 +64,13 @@ SignalFlow 是面向 AI 技术资讯的自动化筛选、评分与检索系统�
 
 - Bash 5+
 - Python 3.10+
-- 知乎开放平台 Access Secret（[申请入口](https://developer.zhihu.com)）
+- 可选：如需运行知乎相关采集模块，需自行配置[知乎开放平台]（https://developer.zhihu.com）凭证
 
 ### 安装
 
 ```bash
-git clone https://github.com/Asudual/signalflow.git
-cd signalflow
+git clone https://github.com/Asudual/BriefSignal.git
+cd BriefSignal
 cp .env.example .env
 # 编辑 .env 填入 ZHIHU_ACCESS_SECRET
 ```
@@ -85,8 +85,8 @@ bash news/scripts/generate.sh daily
 bash news/scripts/zhihu-recommend.sh
 
 # 设置 crontab（自行添加到系统 crontab）
-0 8 * * * cd /path/to/signalflow && bash news/scripts/generate.sh daily >> news/logs/cron_$(date +\%Y-\%m-\%d).log 2>&1
-30 12 * * * cd /path/to/signalflow && bash news/scripts/zhihu-recommend.sh >> news/logs/cron_zhihu_$(date +\%Y-\%m-\%d).log 2>&1
+0 8 * * * cd /path/to/BriefSignal && bash news/scripts/generate.sh daily >> news/logs/cron_$(date +\%Y-\%m-\%d).log 2>&1
+30 12 * * * cd /path/to/BriefSignal && bash news/scripts/zhihu-recommend.sh >> news/logs/cron_zhihu_$(date +\%Y-\%m-\%d).log 2>&1
 ```
 
 ## 文件说明
@@ -109,6 +109,7 @@ news/
 skills/
 └── article-rating/       # 四维评分 skill
     └── SKILL.md
+```
 
 ## 当前能力 (v0.3.0)
 
@@ -145,7 +146,6 @@ bash scripts/security_scan.sh
 ```
 
 详见 `docs/api.md`。
-```
 
 ## 技术栈
 

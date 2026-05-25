@@ -1,6 +1,6 @@
-# SignalFlow 本地检索
+# BriefSignal 本地检索
 
-本地检索是 SignalFlow v0.2 的功能之一，提供对历史采集文章的快速关键词检索。它是未来 AI Search / RAG 前置功能的原型版本。
+本地检索是 BriefSignal v0.2 的功能之一，提供对历史采集文章的快速关键词检索。它是未来 AI Search / RAG 前置功能的原型版本。
 
 ## 用途
 

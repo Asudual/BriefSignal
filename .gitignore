@@ -1,4 +1,4 @@
-# SignalFlow — 项目根目录 .gitignore
+# BriefSignal — 项目根目录 .gitignore
 
 # =========== 环境与密钥 ===========
 .env
@@ -28,7 +28,7 @@ Thumbs.db
 *.pid
 
 # =========== OpenClaw / Agent 配置（本地私有）===========
-# 以下的文件属于 SignalFlow 运行环境的自身配置，非项目源代码
+# 以下的文件属于 BriefSignal 运行环境的自身配置，非项目源代码
 # 若要公开，请显式取消注释后手动添加
 SOUL.md
 USER.md

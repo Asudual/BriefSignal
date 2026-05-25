@@ -1,5 +1,5 @@
 """
-SignalFlow Search API — FastAPI 路由
+BriefSignal Search API — FastAPI 路由
 
 封装 search_local 的检索函数，返回标准化 JSON 响应。
 """

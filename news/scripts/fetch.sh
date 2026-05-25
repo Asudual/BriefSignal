@@ -1,5 +1,5 @@
 #!/bin/bash
-# SignalFlow News - Fetch Module v2
+# BriefSignal News - Fetch Module v2
 # 根据 sources.json 配置抓取所有源，输出到 tmp/ 目录
 # 支持 RSS 和 webpage 两种类型
 
@@ -26,7 +26,7 @@ log() {
     echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOGDIR/fetch_${TODAY}.log"
 }
 
-log "========== SignalFlow Fetch v2 开始 =========="
+log "========== BriefSignal Fetch v2 开始 =========="
 
 fetch_rss() {
     local name="$1"
@@ -34,7 +34,7 @@ fetch_rss() {
     local output="$TMPDIR/${TODAY}_$(echo "$name" | sed 's/[ /]/_/g').xml"
     
     log "  📡 $name ..."
-    if content=$(curl -s -L --max-time 20 -H "User-Agent: SignalFlowNewsBot/2.0" "$url" 2>/dev/null); then
+    if content=$(curl -s -L --max-time 20 -H "User-Agent: BriefSignalNewsBot/2.0" "$url" 2>/dev/null); then
         if [ -n "$content" ] && [ "$(echo "$content" | wc -c)" -gt 100 ]; then
             echo "$content" > "$output"
             local bytes=$(wc -c < "$output")
