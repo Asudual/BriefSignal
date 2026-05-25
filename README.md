@@ -21,13 +21,6 @@ SignalFlow 是面向 AI 技术资讯的自动化筛选、评分与检索系统�
 
 - ✅ automated AI information filtering and briefing pipeline
 - ✅ structured article schema (docs/data_schema.md)
-
----
-
-## Current Status (v0.3.0)
-
-- ✅ automated AI information filtering and briefing pipeline
-- ✅ structured article schema (docs/data_schema.md)
 - ✅ four-dimensional content quality scoring (depth/originality/practicality/title_quality)
 - ✅ local keyword search baseline (search_local.py)
 - ✅ FastAPI service: /health /sources /search
