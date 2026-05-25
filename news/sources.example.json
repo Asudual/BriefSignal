@@ -1,0 +1,89 @@
+{
+  "_comment": "SignalFlow 信息源配置示例 — 脱敏版",
+  "sources": [
+    {
+      "name": "橘鸦AI早报",
+      "priority": "P0",
+      "type": "rss",
+      "url": "https://example.com/juya-ai-daily/rss.xml",
+      "enabled": true,
+      "description": "AI 综合资讯，日更，核心信源"
+    },
+    {
+      "name": "iThome",
+      "priority": "P0",
+      "type": "rss",
+      "url": "https://www.ithome.com.tw/rss/",
+      "enabled": true,
+      "description": "台湾繁体 IT 媒体，AI 覆盖全面"
+    },
+    {
+      "name": "VentureBeat AI",
+      "priority": "P0",
+      "type": "rss",
+      "url": "https://venturebeat.com/category/ai/feed/",
+      "enabled": true,
+      "description": "英文 AI 深度产业报道"
+    },
+    {
+      "name": "BestBlogs每日早报",
+      "priority": "P1",
+      "type": "rss",
+      "url": "https://www.bestblogs.dev/zh/feeds/rss/daily-brief",
+      "enabled": true,
+      "description": "中文 AI 博客每日精选"
+    },
+    {
+      "name": "InfoQ 中国",
+      "priority": "P1",
+      "type": "rss",
+      "url": "https://www.infoq.cn/feed",
+      "enabled": true,
+      "description": "技术社区新闻，AI 工程化实践"
+    },
+    {
+      "name": "36氪",
+      "priority": "P1",
+      "type": "rss",
+      "url": "https://36kr.com/feed",
+      "enabled": true,
+      "description": "科技投融资，仅收录 AI/ML/算力相关"
+    },
+    {
+      "name": "Qwen Blog",
+      "priority": "P1",
+      "type": "webpage",
+      "url": "https://qwenlm.github.io/blog/",
+      "enabled": true,
+      "description": "通义千问官方技术博客，模型发布与更新"
+    },
+    {
+      "name": "雷锋网",
+      "priority": "P2",
+      "type": "rss",
+      "url": "https://www.leiphone.com/feed",
+      "enabled": true,
+      "description": "AI 科技媒体，产业与技术新闻"
+    }
+  ],
+  "generation_rules": {
+    "min_sources_for_publish": {
+      "P0": 1,
+      "P1": 2,
+      "total": 3
+    },
+    "quality_threshold": 0.5,
+    "scoring": {
+      "formula": "source_weight * 0.5 + timeliness * 0.3 + info_density * 0.2",
+      "timeliness": { "today": 1.0, "yesterday": 0.7, "older": 0.3 },
+      "info_density": { "gt500chars": 1.0, "200to500": 0.7, "lt200": 0.4 }
+    },
+    "fire_event_threshold_days": 3
+  },
+  "notes": [
+    "实际运行时 auth 通过环境变量 ZHIHU_ACCESS_SECRET 注入，不写入配置文件。",
+    "知乎开放平台 API 源（global_search / hot_list）运行时动态构造，依赖 openclaw 内置知乎 skill。",
+    "URL 为示例/公开主页，生产环境中替换为实际 RSS/API 端点。",
+    "权重（weight）在生产 sources.json 中配置，此处仅展示结构。"
+  ]
+}
