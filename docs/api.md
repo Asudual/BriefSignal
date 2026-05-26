@@ -191,3 +191,91 @@ curl --get --data-urlencode "query=Agent" --data-urlencode "limit=3" http://loca
 - **v0.3.0 不使用 GitHub Secrets** — 在配置好 .github/workflows 前不会用到 secrets
 - **v0.3.0 使用脱敏 mock 数据** — 默认加载 `examples/sample_articles.json`，可通过 `--data` 参数指定其他 JSON 文件
 - **不接真实知乎 API** — 搜索范围限于本地 JSON 数据
+
+---
+
+## ⚠️ 实验性 SQLite API（Experimental）
+
+> **状态：** experimental — 接口结构可能变更，不进入生产。
+> **不影响现有 `/search` `/sources` `/health` 路由。**
+
+### 环境变量
+
+| 变量 | 必填 | 说明 |
+|------|------|------|
+| `BRIEFSIGNAL_DB_PATH` | 是（SQLite 路由） | SQLite 数据库文件路径，未设置时 `/sqlite/*` 返回 503 |
+| `BRIEFSIGNAL_API_KEY` | 否 | 设置后所有 `/sqlite/*` 请求须携带 `X-API-Key` 标头 |
+
+### 错误响应格式
+
+```json
+{
+  "detail": {
+    "error": {
+      "code": "DB_NOT_CONFIGURED",
+      "message": "BRIEFSIGNAL_DB_PATH 环境变量未设置，SQLite 后端不可用"
+    }
+  }
+}
+```
+
+错误码：`DB_NOT_CONFIGURED` / `NOT_FOUND` / `INVALID_API_KEY` / `INVALID_PARAMS` / `INTERNAL_ERROR`
+
+---
+
+### GET /sqlite/sources
+
+列出 SQLite 数据库中所有已启用信源。
+
+**响应：**
+```json
+{
+  "backend": "sqlite",
+  "sources": ["36氪", "InfoQ 中国", "iThome"]
+}
+```
+
+---
+
+### GET /sqlite/search
+
+**参数：**
+
+| 参数 | 类型 | 必填 | 默认 | 说明 |
+|------|------|------|------|------|
+| `query` | string | 否 | — | 关键词（空格分隔，匹配 title + summary） |
+| `source` | string | 否 | — | 按信源名称过滤（部分匹配） |
+| `min_score` | float | 否 | — | 最低 quality_score.total 阈值（0-100） |
+| `limit` | integer | 否 | 10 | 最多返回条数（1-100） |
+| `offset` | integer | 否 | 0 | 分页偏移 |
+
+**响应：**
+```json
+{
+  "backend": "sqlite",
+  "query": "MCP",
+  "count": 1,
+  "limit": 10,
+  "offset": 0,
+  "items": [{ "id": "...", "title": "...", "quality_score": { "total": 82.3 } }]
+}
+```
+
+---
+
+### GET /sqlite/articles/{article_id}
+
+**响应（200）：**
+```json
+{
+  "backend": "sqlite",
+  "item": { "id": "...", "title": "...", "quality_score": { ... } }
+}
+```
+
+**响应（404）：**
+```json
+{
+  "detail": { "error": { "code": "NOT_FOUND", "message": "文章 'xxx' 不存在" } }
+}
+```
