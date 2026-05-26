@@ -252,3 +252,71 @@ class TestSearchArticles:
         assert "total" in r["quality_score"]
         assert "grade" in r["quality_score"]
         assert "depth" in r["quality_score"]
+
+
+# ---------------------------------------------------------------------------
+# TestSearchArticlesBoundary — limit/offset 边界检查
+# ---------------------------------------------------------------------------
+
+
+class TestSearchArticlesBoundary:
+    def test_limit_zero_raises(self, populated_db):
+        with pytest.raises(ValueError):
+            search_articles(populated_db, limit=0)
+
+    def test_limit_negative_raises(self, populated_db):
+        with pytest.raises(ValueError):
+            search_articles(populated_db, limit=-1)
+
+    def test_limit_over_100_raises(self, populated_db):
+        with pytest.raises(ValueError):
+            search_articles(populated_db, limit=101)
+
+    def test_offset_negative_raises(self, populated_db):
+        with pytest.raises(ValueError):
+            search_articles(populated_db, offset=-1)
+
+    def test_limit_not_int_raises(self, populated_db):
+        with pytest.raises(ValueError):
+            search_articles(populated_db, limit="10")
+
+    def test_offset_not_int_raises(self, populated_db):
+        with pytest.raises(ValueError):
+            search_articles(populated_db, offset=1.5)
+
+
+# ---------------------------------------------------------------------------
+# TestGetArticleByIdMissingScores — scores 缺失时不崩溃
+# ---------------------------------------------------------------------------
+
+
+class TestGetArticleByIdMissingScores:
+    def test_article_without_scores(self, tmp_db):
+        """手动插入只有 articles 没有 scores 的记录，get_article_by_id 不崩溃"""
+        init_db(tmp_db)
+        conn = sqlite3.connect(tmp_db)
+        conn.execute(
+            """
+            INSERT INTO articles (id, title, source, url, published_at,
+                                  summary, content, total_score, grade, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            ("no_score_article", "Test Title", "TestSource", "http://example.com",
+             "2026-05-25T08:00:00+08:00", "A summary", "", 60.0, "B",
+             "2026-05-25T08:05:00+08:00"),
+        )
+        conn.commit()
+        conn.close()
+
+        result = get_article_by_id(tmp_db, "no_score_article")
+        assert result is not None
+        assert result["title"] == "Test Title"
+        assert result["source"]["name"] == "TestSource"
+        assert "quality_score" in result
+        qs = result["quality_score"]
+        assert qs["total"] == 60.0
+        assert qs["grade"] == "B"
+        assert qs["depth"] is None
+        assert qs["originality"] is None
+        assert qs["practicality"] is None
+        assert qs["title_quality"] is None

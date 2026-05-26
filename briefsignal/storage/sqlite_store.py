@@ -169,14 +169,20 @@ def get_article_by_id(db_path: str, article_id: str) -> dict | None:
     """按 id 返回 article dict（兼容 search_local 格式），不存在返回 None。"""
     with _connect(db_path) as conn:
         row = conn.execute(
-            "SELECT * FROM articles WHERE id = ?", (article_id,)
+            """
+            SELECT
+                a.id, a.title, a.source, a.url, a.published_at, a.summary,
+                a.content, a.total_score, a.grade,
+                s.depth, s.originality, s.practicality, s.title_quality
+            FROM articles a
+            LEFT JOIN scores s ON a.id = s.article_id
+            WHERE a.id = ?
+            """,
+            (article_id,),
         ).fetchone()
         if row is None:
             return None
-        sc = conn.execute(
-            "SELECT * FROM scores WHERE article_id = ?", (article_id,)
-        ).fetchone()
-        return _build_article_dict(row, sc)
+        return _build_article_dict(row)
 
 
 def list_sources(db_path: str) -> list[str]:
@@ -204,9 +210,23 @@ def search_articles(
         query:     关键词（空格分隔，匹配 title + summary，大小写不敏感）
         source:    按信源名称过滤（部分匹配，大小写不敏感）
         min_score: 最低 total_score 阈值
-        limit:     最多返回条数（默认 10）
+        limit:     最多返回条数（默认 10，最大 100）
         offset:    分页偏移（默认 0）
+
+    Raises:
+        ValueError: limit/offset 不合法时
     """
+    if not isinstance(limit, int):
+        raise ValueError(f"limit 必须是整数，收到: {type(limit).__name__}")
+    if not isinstance(offset, int):
+        raise ValueError(f"offset 必须是整数，收到: {type(offset).__name__}")
+    if limit <= 0:
+        raise ValueError(f"limit 必须大于 0，收到: {limit}")
+    if limit > 100:
+        raise ValueError(f"limit 最大为 100，收到: {limit}")
+    if offset < 0:
+        raise ValueError(f"offset 必须非负，收到: {offset}")
+
     conditions: list[str] = []
     params: list = []
 
@@ -247,34 +267,20 @@ def search_articles(
 # Internal helpers
 # ---------------------------------------------------------------------------
 
-def _build_article_dict(
-    row: sqlite3.Row,
-    scores_row: sqlite3.Row | None = None,
-) -> dict:
+def _build_article_dict(row: sqlite3.Row) -> dict:
     """
-    将数据库行转换为与 search_local.search() 兼容的 article dict。
+    将 LEFT JOIN 查询行转换为与 search_local.search() 兼容的 article dict。
 
-    - get_article_by_id 传入 (articles row, scores row)
-    - search_articles 传入 (join row, None)，join row 已含 scores 列
+    scores 列缺失（NULL）时保留为 None。
     """
-    if scores_row is not None:
-        qs = {
-            "depth": scores_row["depth"],
-            "originality": scores_row["originality"],
-            "practicality": scores_row["practicality"],
-            "title_quality": scores_row["title_quality"],
-            "total": scores_row["total"],
-            "grade": scores_row["grade"],
-        }
-    else:
-        qs = {
-            "depth": row["depth"],
-            "originality": row["originality"],
-            "practicality": row["practicality"],
-            "title_quality": row["title_quality"],
-            "total": row["total_score"],
-            "grade": row["grade"],
-        }
+    qs = {
+        "depth": row["depth"],
+        "originality": row["originality"],
+        "practicality": row["practicality"],
+        "title_quality": row["title_quality"],
+        "total": row["total_score"],
+        "grade": row["grade"],
+    }
 
     return {
         "id": row["id"],
