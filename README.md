@@ -16,7 +16,7 @@ BriefSignal 是面向 AI 技术资讯的自动化筛选、评分与检索系统�
 - 可选 API Key 认证：BRIEFSIGNAL_API_KEY 环境变量
 - 测试与安全：pytest 测试套件（87 项）+ 自动化安全扫描脚本
 
-**后续计划：** 升级为 AI Search / RAG / Agent 系统。
+**后续计划：** 探索 AI Search、RAG 与 Agent 化能力。
 
 ---
 
@@ -174,7 +174,7 @@ bash scripts/security_scan.sh
 | 脚本 | Bash |
 | 评分 | Python |
 | 定时 | crontab |
-| 数据 | JSON 文件系统 |
+| 数据 | JSON 文件系统 + SQLite（experimental） |
 | 推送 | QQ 开放平台 |
 
 ## 知乎 API 配额
