@@ -11,22 +11,32 @@ BriefSignal 是面向 AI 技术资讯的自动化筛选、评分与检索系统�
 - 结构化 schema：标准化文章、信源、评分 JSON 结构
 - 四维质量评分：深度 / 原创性 / 实操性 / 标题质量，0-100 分 + A/B/C 等级
 - 本地检索：CLI 关键词搜索 + FastAPI 服务（/health /sources /search）
-- 测试与安全：pytest 测试套件 + 自动化安全扫描脚本
+- SQLite 存储层：文章导入、检索、评分查询（实验性）
+- 实验性 SQLite API：/sqlite/search、/sqlite/sources、/sqlite/articles/{id}
+- 可选 API Key 认证：BRIEFSIGNAL_API_KEY 环境变量
+- 测试与安全：pytest 测试套件（87 项）+ 自动化安全扫描脚本
 
 **后续计划：** 升级为 AI Search / RAG / Agent 系统。
 
 ---
 
-## Current Status (v0.3.0)
+## Current Status (v0.3.1)
 
 - ✅ automated AI information filtering and briefing pipeline
 - ✅ structured article schema (docs/data_schema.md)
 - ✅ four-dimensional content quality scoring (depth/originality/practicality/title_quality)
 - ✅ local keyword search baseline (search_local.py)
 - ✅ FastAPI service: /health /sources /search
-- ✅ pytest test suite (17 tests)
+- ✅ SQLite storage layer (briefsignal/storage/)
+- ✅ JSON to SQLite import script (scripts/import_json_to_sqlite.py)
+- ✅ experimental SQLite API under /sqlite/* (search / sources / article detail)
+- ✅ optional API key support via BRIEFSIGNAL_API_KEY
+- ✅ pytest test suite (87 tests)
 - ✅ security scan script (scripts/security_scan.sh)
 - 🔜 AI Search / RAG / Agent (see roadmap)
+
+> The experimental SQLite API does not replace the existing JSON local search API.
+> Existing `/search`, `/sources`, `/health` routes remain unchanged.
 
 ---
 
@@ -113,7 +123,7 @@ skills/
     └── SKILL.md
 ```
 
-## 当前能力 (v0.3.0)
+## 当前能力 (v0.3.1)
 
 ### CLI 本地检索
 
@@ -135,6 +145,14 @@ uvicorn app.main:app --reload --port 8080
 | `GET /health` | 服务健康检查 |
 | `GET /sources` | 列出可用信源 |
 | `GET /search?query=MCP` | 检索文章（支持 query/source/min_score/limit） |
+
+**实验性 SQLite API**（需设置 `BRIEFSIGNAL_DB_PATH`，不替换上方 JSON 检索）：
+
+| 端点 | 说明 |
+|------|------|
+| `GET /sqlite/search` | SQLite 检索（支持 query/source/min_score/limit/offset） |
+| `GET /sqlite/sources` | SQLite 信源列表 |
+| `GET /sqlite/articles/{id}` | 按 id 查单篇文章 |
 
 ### 测试与安全
 
