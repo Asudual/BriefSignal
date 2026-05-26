@@ -57,6 +57,9 @@ skills/zhihu-hot-list/
 skills/zhihu-search/
 skills/.skills_store_lock.json
 
+# =========== SQLite 数据库 ===========
+*.db
+
 # =========== FastAPI / Python 运行产物 ===========
 app/__pycache__/
 app/*.pyc
