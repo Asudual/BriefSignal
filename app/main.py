@@ -9,6 +9,7 @@ BriefSignal FastAPI 服务入口。
 
 from fastapi import FastAPI
 from app.search_api import router
+from app.sqlite_api import router as sqlite_router
 
 app = FastAPI(
     title="BriefSignal API",
@@ -17,3 +18,4 @@ app = FastAPI(
 )
 
 app.include_router(router)
+app.include_router(sqlite_router)
