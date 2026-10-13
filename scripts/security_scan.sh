@@ -15,24 +15,14 @@ SCAN_DIR="${1:-.}"
 scan_pattern() {
     local pattern="$1"
     local label="$2"
-    local file_filter="${3:-}"
-    
-    local cmd="grep -rn '$pattern' '$SCAN_DIR' --include='*'"
-    if [ -n "$file_filter" ]; then
-        cmd="grep -rn '$pattern' '$SCAN_DIR' $file_filter"
-    fi
-    
-    local matches
-    matches=$(eval "$cmd" 2>/dev/null \
-        | grep -v './.git/' \
-        | grep -v './.gitignore' \
-        | grep -v './skills/' \
-        | grep -v 'Authorization: Bearer <YOUR_TOKEN>' \
-        | grep -v 'qqbot:c2c:<YOUR_TARGET_ID>' \
-        | grep -v 'scripts/security_scan.sh' \
-        || true)
-    
-    if [ -n "$matches" ]; then
+    local matches status=0
+    matches=$(grep -rInE --exclude-dir=.git --exclude-dir=.pytest_cache \
+        --exclude-dir=__pycache__ -- "$pattern" "$SCAN_DIR") || status=$?
+
+    if [ "$status" -gt 1 ]; then
+        echo "[FAIL] Could not complete scan: $label"
+        errors=$((errors + 1))
+    elif [ -n "$matches" ]; then
         echo "[FAIL] $label"
         echo "$matches" | while IFS= read -r line; do
             echo "       $(echo "$line" | cut -d: -f1,2)"
@@ -44,17 +34,17 @@ scan_pattern() {
 echo "=== BriefSignal Security Scan ==="
 echo ""
 
-# 硬编码知乎 Secret
-scan_pattern 'EXAMPLE_SERVICE_SECRET' 'Hardcoded ZHIHU_ACCESS_SECRET'
+# Review long literal identifiers, including values inside this scanner.
+scan_pattern '(^|[^[:alnum:]_])[[:xdigit:]]{28,64}([^[:alnum:]_]|$)' 'Embedded hex identifier (review required)'
 
 # 硬编码 Bearer token（超过 32 位的不明字符串）
-scan_pattern 'Bearer [A-Za-z0-9_\-]\{32,\}' 'Hardcoded Bearer token'
+scan_pattern 'Bearer [A-Za-z0-9_-]{32,}' 'Hardcoded Bearer token'
 
 # 服务器绝对路径
-scan_pattern '/root/\.openclaw/workspace' 'Server file path (/root/.openclaw/workspace)'
+scan_pattern '/root/[.]openclaw/workspace' 'Server-specific workspace path'
 
 # 真实 QQ 推送目标 ID
-scan_pattern 'EXAMPLE_DELIVERY_TARGET' 'QQ target ID'
+scan_pattern 'qqbot:c2c:[A-Za-z0-9_-]{16,}' 'Hardcoded delivery target'
 
 # .env 是否被 git 跟踪
 if git ls-files .env 2>/dev/null | grep -q '.env'; then
